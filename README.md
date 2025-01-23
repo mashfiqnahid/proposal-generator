@@ -168,4 +168,4 @@ Thank you to the React, Redux Toolkit, and SCSS communities for their fantastic 
 
 For any questions or suggestions, feel free to reach out:
 - **Email**: mashfiqnahid@gmail.com
-- **GitHub**: [your-username](https://github.com/mashfiqnahid)
+- **GitHub**: [mashfiqnahid](https://github.com/mashfiqnahid)
