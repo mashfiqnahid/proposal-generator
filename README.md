@@ -103,10 +103,10 @@ yarn format
 Here’s an example of what a proposal might look like:
 
 ### **Title**: 
-`Project Proposal: ConnectClub CRM`
+`Project Proposal: Leads CRM`
 
 ### **Overview**: 
-`ConnectClub CRM is a SaaS-based CRM platform designed to enhance business processes.`
+`Leads CRM is a SaaS-based CRM platform designed to enhance business processes.`
 
 ### **Deliverables**:
 - Dashboard
