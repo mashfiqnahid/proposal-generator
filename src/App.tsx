@@ -7,6 +7,7 @@ import ModuleEditor from './components/ModuleEditor/ModuleEditor';
 import ExportButtons from './components/ExportButtons';
 import { Provider } from 'react-redux';
 import { store } from './store/store';
+import TeamMemberEditor from './components/TeamMember/TeamMemberEditor';
 
 const App: React.FC = () => {
   return (
@@ -17,6 +18,7 @@ const App: React.FC = () => {
         <ProposalOverview />
         <Deliverables />
         <ModuleEditor />
+        <TeamMemberEditor />
       </div>
     </Provider>
   );

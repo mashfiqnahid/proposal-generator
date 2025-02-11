@@ -13,7 +13,6 @@ interface ModuleTableProps {
 const ModuleTable: React.FC<ModuleTableProps> = ({ modules, onEdit, onDelete }) => {
     const columns = [
         { title: 'ProjectModule Name', dataIndex: 'name', key: 'name' },
-        { title: 'Description', dataIndex: 'description', key: 'description' },
         {
             title: 'Hours',
             dataIndex: 'hours',
