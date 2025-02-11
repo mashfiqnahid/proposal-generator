@@ -1,5 +1,6 @@
 import React, { useState } from "react";
-import { Button, Modal } from "antd";
+import { Button, Modal, Upload, message } from "antd";
+import { UploadOutlined } from "@ant-design/icons";
 import { updateTitle, updateOverview, updateDeliverable, updateModule } from "../features/proposalSlice";
 import { useAppDispatch, useAppSelector } from "../store/hooks";
 
@@ -9,35 +10,32 @@ const ExportButtons: React.FC = () => {
   const [isPreviewOpen, setIsPreviewOpen] = useState(false);
 
   // Function to handle file import
-  const handleImportJSON = (event: React.ChangeEvent<HTMLInputElement>) => {
-    const file = event.target.files?.[0];
-    if (file) {
-      const reader = new FileReader();
-      reader.onload = (e) => {
-        try {
-          const data = JSON.parse(e.target?.result as string);
+  const handleImportJSON = (file: File) => {
+    const reader = new FileReader();
+    reader.onload = (e) => {
+      try {
+        const data = JSON.parse(e.target?.result as string);
 
-          // Update Redux state with imported data
-          if (data.title) dispatch(updateTitle(data.title));
-          if (data.overview) dispatch(updateOverview(data.overview));
-          if (data.deliverables) {
-            data.deliverables.forEach((deliverable: string, index: number) => {
-              dispatch(updateDeliverable({ index, value: deliverable }));
-            });
-          }
-          if (data.modules) {
-            data.modules.forEach((module: any, index: number) => {
-              dispatch(updateModule({ index, module }));
-            });
-          }
-
-          alert("JSON imported successfully!");
-        } catch (error) {
-          alert("Error parsing JSON. Please check the file format.");
+        // Update Redux state with imported data
+        if (data.title) dispatch(updateTitle(data.title));
+        if (data.overview) dispatch(updateOverview(data.overview));
+        if (data.deliverables) {
+          data.deliverables.forEach((deliverable: string, index: number) => {
+            dispatch(updateDeliverable({ index, value: deliverable }));
+          });
         }
-      };
-      reader.readAsText(file);
-    }
+        if (data.modules) {
+          data.modules.forEach((module: any, index: number) => {
+            dispatch(updateModule({ index, module }));
+          });
+        }
+
+        message.success("JSON imported successfully!");
+      } catch (error) {
+        message.error("Error parsing JSON. Please check the file format.");
+      }
+    };
+    reader.readAsText(file);
   };
 
   const exportAsJSON = () => {
@@ -107,6 +105,20 @@ const ExportButtons: React.FC = () => {
 
   return (
     <div>
+
+      <Upload
+        accept=".json"
+        showUploadList={false}
+        beforeUpload={(file) => {
+          handleImportJSON(file);
+          return false; // Prevent automatic upload
+        }}
+      >
+        <Button icon={<UploadOutlined />} style={{ marginTop: "10px" }}>
+          Import JSON
+        </Button>
+      </Upload>
+
       <Button type="primary" onClick={exportAsJSON} style={{ marginRight: 10 }}>
         Export as JSON
       </Button>
@@ -116,13 +128,7 @@ const ExportButtons: React.FC = () => {
       <Button type="default" onClick={() => setIsPreviewOpen(true)} style={{ marginRight: 10 }}>
         Preview
       </Button>
-      <input
-        type="file"
-        accept=".json"
-        onChange={handleImportJSON}
-        style={{ display: "block", marginTop: "10px" }}
-      />
-
+      
       <Modal
         title="Proposal Preview"
         open={isPreviewOpen}

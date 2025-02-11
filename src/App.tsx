@@ -12,11 +12,11 @@ const App: React.FC = () => {
   return (
     <Provider store={store}>
       <div className="App">
+        <ExportButtons />
         <TitleEditor />
         <ProposalOverview />
         <Deliverables />
         <ModuleEditor />
-        <ExportButtons />
       </div>
     </Provider>
   );

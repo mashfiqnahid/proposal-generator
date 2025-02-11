@@ -2,6 +2,7 @@ import React from 'react';
 import { Table, Button, Space, Popconfirm } from 'antd';
 import { EditOutlined, DeleteOutlined } from '@ant-design/icons';
 import { Module } from '../../types/proposal.type';
+import { current } from '@reduxjs/toolkit';
 
 interface ModuleTableProps {
     modules: Module[];
@@ -18,7 +19,7 @@ const ModuleTable: React.FC<ModuleTableProps> = ({ modules, onEdit, onDelete }) 
             dataIndex: 'hours',
             key: 'hours',
             render: (hours: { label: string; hours: number }[]) =>
-                hours.map((h) => `${h.label}: ${h.hours}`).join(', '),
+                hours.reduce((prev, cur) => (prev + cur.hours), 0)+" Hrs",
         },
         {
             title: 'Actions',
