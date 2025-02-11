@@ -1,25 +1,12 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
+import Proposal, { Module } from '../types/proposal.type';
 
-interface Hours {
-  label: string;
-  hours: number;
+export const blankModule: Module = {
+  name: '',
+  description: '',
+  hours: [],
 }
-
-interface Module {
-  name: string;
-  description: string;
-  hours: Hours[];
-}
-
-interface ProposalState {
-  title: string;
-  overview: string;
-  deliverables: string[];
-  modules: Module[];
-  timeline: string;
-}
-
-const initialState: ProposalState = {
+const initialState: Proposal = {
   title: 'Project Proposal: ConnectClub CRM',
   overview: 'ConnectClub CRM is a SaaS-based CRM platform designed to enhance business processes.',
   deliverables: ['Dashboard', 'Contacts Module', 'Leads Module', 'Accounts Module'],
