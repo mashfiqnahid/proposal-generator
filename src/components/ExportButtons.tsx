@@ -102,17 +102,20 @@ const ExportButtons: React.FC = () => {
     `;
   };
   const generateHTMLContentHoursSummary = () => {
-
     // Generate hour summary (Module X Team Role-wise distribution)
     const hourSummary: { [module: string]: { [teamRole: string]: number } } = {};
     const totalHours: { [teamRole: string]: number } = {};
     let grandTotalHours = 0;
+    const moduleTotalHours: { [module: string]: number } = {};
 
     proposal.modules.forEach((module) => {
       hourSummary[module.name] = {};
+      moduleTotalHours[module.name] = 0; // Initialize module total
+
       module.hours.forEach(({ teamRole, hours }) => {
         hourSummary[module.name][teamRole] = (hourSummary[module.name][teamRole] || 0) + hours;
         totalHours[teamRole] = (totalHours[teamRole] || 0) + hours;
+        moduleTotalHours[module.name] += hours; // Sum up module total
         grandTotalHours += hours; // Sum up grand total hours
       });
     });
@@ -127,6 +130,7 @@ const ExportButtons: React.FC = () => {
             <tr>
               <th>Module</th>
               ${allTeamRoles.map(teamRole => `<th>${teamRole}</th>`).join("")}
+              <th><strong>Total</strong></th>
             </tr>
           </thead>
           <tbody>
@@ -134,11 +138,13 @@ const ExportButtons: React.FC = () => {
               <tr>
                 <td>${module}</td>
                 ${allTeamRoles.map(teamRole => `<td>${roles[teamRole] || 0} h</td>`).join("")}
+                <td><strong>${moduleTotalHours[module]} h</strong></td>
               </tr>
             `).join("")}
             <tr>
               <td><strong>Total Hours</strong></td>
               ${allTeamRoles.map(teamRole => `<td><strong>${totalHours[teamRole] || 0} h</strong></td>`).join("")}
+              <td><strong>${grandTotalHours} h</strong></td>
             </tr>
           </tbody>
         </table>
