@@ -14,12 +14,12 @@ const HourInput: React.FC<HourInputProps> = ({ form }) => {
         setHours(updatedHours)
     }, [])
     const handleAddHour = () => {
-        const updatedHours = [...hours, { label: '', hours: 0 }];
+        const updatedHours = [...hours, { teamRole: '', hours: 0 }];
         form.setFieldsValue({ hours: updatedHours });
         setHours(updatedHours)
     };
 
-    const handleUpdateHour = (index: number, key: 'label' | 'hours', value: string | number) => {
+    const handleUpdateHour = (index: number, key: 'teamRole' | 'hours', value: string | number) => {
         const updatedHours = [...hours];
         updatedHours[index] = { ...updatedHours[index], [key]: key === 'hours' ? Number(value) : value };
         form.setFieldsValue({ hours: updatedHours });
@@ -37,9 +37,9 @@ const HourInput: React.FC<HourInputProps> = ({ form }) => {
             {hours.map((h, index) => (
                 <Space key={index} style={{ display: 'flex', marginBottom: 8 }}>
                     <Input
-                        placeholder="Label (e.g., Frontend)"
-                        value={h.label}
-                        onChange={(e) => handleUpdateHour(index, 'label', e.target.value)}
+                        placeholder="teamRole (e.g., Frontend)"
+                        value={h.teamRole}
+                        onChange={(e) => handleUpdateHour(index, 'teamRole', e.target.value)}
                     />
                     <Input
                         type="number"

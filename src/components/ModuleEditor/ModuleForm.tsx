@@ -1,12 +1,12 @@
 import React, { useEffect } from 'react';
 import { Modal, Form, Input } from 'antd';
 import HourInput from './HourInput';
-import { Module } from '../../types/proposal.type';
+import { ProjectModule } from '../../types/proposal.type';
 
 interface ModuleFormProps {
     visible: boolean;
-    initialData: Module;
-    onSave: (data: Module) => void;
+    initialData: ProjectModule;
+    onSave: (data: ProjectModule) => void;
     onCancel: () => void;
 }
 
@@ -17,7 +17,7 @@ const ModuleForm: React.FC<ModuleFormProps> = ({ visible, initialData, onSave, o
         if (visible) {
             form.setFieldsValue({
                 ...initialData,
-                hours: initialData.hours.length ? initialData.hours : [{ label: '', hours: 0 }],
+                hours: initialData.hours.length ? initialData.hours : [{ teamRole: '', hours: 0 }],
             });
         }
     }, [visible, initialData, form]);
@@ -30,9 +30,9 @@ const ModuleForm: React.FC<ModuleFormProps> = ({ visible, initialData, onSave, o
     };
 
     return (
-        <Modal title={initialData?.name ? 'Edit Module' : 'Add New Module'} open={visible} onOk={handleSave} onCancel={onCancel}>
+        <Modal title={initialData?.name ? 'Edit ProjectModule' : 'Add New ProjectModule'} open={visible} onOk={handleSave} onCancel={onCancel}>
             <Form form={form} layout="vertical">
-                <Form.Item label="Module Name" name="name" rules={[{ required: true, message: 'Please enter module name' }]}>
+                <Form.Item label="ProjectModule Name" name="name" rules={[{ required: true, message: 'Please enter module name' }]}>
                     <Input />
                 </Form.Item>
                 <Form.Item label="Description" name="description" rules={[{ required: true, message: 'Please enter description' }]}>

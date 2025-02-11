@@ -1,7 +1,7 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
-import Proposal, { Module } from '../types/proposal.type';
+import Proposal, { ProjectModule } from '../types/proposal.type';
 
-export const blankModule: Module = {
+export const blankModule: ProjectModule = {
   name: '',
   description: '',
   hours: [],
@@ -9,15 +9,15 @@ export const blankModule: Module = {
 const initialState: Proposal = {
   title: 'Project Proposal: ConnectClub CRM',
   overview: 'ConnectClub CRM is a SaaS-based CRM platform designed to enhance business processes.',
-  deliverables: ['Dashboard', 'Contacts Module', 'Leads Module', 'Accounts Module'],
+  deliverables: ['Dashboard', 'Contacts ProjectModule', 'Leads ProjectModule', 'Accounts ProjectModule'],
   modules: [
     {
-      name: 'Dashboard Module',
+      name: 'Dashboard ProjectModule',
       description: 'Summarized metrics, dynamic charts, and team activity feed.',
-      hours: [{ label: "Frontend", hours: 50 }, { label: "Backend", hours: 40 }, { label: "uiux", hours: 30 }, { label: "Planning", hours: 10 }],
+      hours: [{ teamRole: "Frontend", hours: 50 }, { teamRole: "Backend", hours: 40 }, { teamRole: "uiux", hours: 30 }, { teamRole: "Planning", hours: 10 }],
     },
   ],
-  timeline: 'Phase 1: Dashboard (Weeks 1-2)\nPhase 2: Contacts & Leads (Weeks 3-5)',
+  teamMembers:[]
 };
 
 export const proposalSlice = createSlice({
@@ -30,19 +30,16 @@ export const proposalSlice = createSlice({
     updateOverview: (state, action: PayloadAction<string>) => {
       state.overview = action.payload;
     },
-    updateTimeline: (state, action: PayloadAction<string>) => {
-      state.timeline = action.payload;
-    },
     updateDeliverable: (state, action: PayloadAction<{ index: number; value: string }>) => {
       state.deliverables[action.payload.index] = action.payload.value;
     },
-    updateModule: (state, action: PayloadAction<{ index: number; module: Module }>) => {
+    updateModule: (state, action: PayloadAction<{ index: number; module: ProjectModule }>) => {
       state.modules[action.payload.index] = action.payload.module;
     },
     updateDeliverables: (state, action: PayloadAction<string[]>) => {
       state.deliverables = action.payload;
     },
-    updateModules: (state, action: PayloadAction<Module[]>) => {
+    updateModules: (state, action: PayloadAction<ProjectModule[]>) => {
       state.modules = action.payload;
     }
   },
@@ -51,7 +48,6 @@ export const proposalSlice = createSlice({
 export const {
   updateTitle,
   updateOverview,
-  updateTimeline,
   updateDeliverable,
   updateModule, updateDeliverables, updateModules
 } = proposalSlice.actions;

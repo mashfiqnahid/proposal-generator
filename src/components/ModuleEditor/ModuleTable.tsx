@@ -1,24 +1,24 @@
 import React from 'react';
 import { Table, Button, Space, Popconfirm } from 'antd';
 import { EditOutlined, DeleteOutlined } from '@ant-design/icons';
-import { Module } from '../../types/proposal.type';
+import { ProjectModule } from '../../types/proposal.type';
 import { current } from '@reduxjs/toolkit';
 
 interface ModuleTableProps {
-    modules: Module[];
+    modules: ProjectModule[];
     onEdit: (index: number) => void;
     onDelete: (index: number) => void;
 }
 
 const ModuleTable: React.FC<ModuleTableProps> = ({ modules, onEdit, onDelete }) => {
     const columns = [
-        { title: 'Module Name', dataIndex: 'name', key: 'name' },
+        { title: 'ProjectModule Name', dataIndex: 'name', key: 'name' },
         { title: 'Description', dataIndex: 'description', key: 'description' },
         {
             title: 'Hours',
             dataIndex: 'hours',
             key: 'hours',
-            render: (hours: { label: string; hours: number }[]) =>
+            render: (hours: { teamRole: string; hours: number }[]) =>
                 hours.reduce((prev, cur) => (prev + cur.hours), 0)+" Hrs",
         },
         {

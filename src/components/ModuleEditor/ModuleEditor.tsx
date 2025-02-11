@@ -45,7 +45,7 @@ const ModuleEditor: React.FC = () => {
             <h3>Modules</h3>
             <ModuleTable modules={modules} onEdit={showModal} onDelete={handleDelete} />
             <Button type="primary" icon={<PlusOutlined />} onClick={() => showModal(null)} style={{ marginTop: 16 }}>
-                Add Module
+                Add ProjectModule
             </Button>
             {isModalVisible && <ModuleForm visible={isModalVisible} initialData={currentModule} onSave={handleSave} onCancel={() => setIsModalVisible(false)} />}
         </div>

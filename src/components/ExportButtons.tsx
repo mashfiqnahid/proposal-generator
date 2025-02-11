@@ -80,13 +80,11 @@ const ExportButtons: React.FC = () => {
             <p>${module.description}</p>
             <p class="hours">Hours:</p>
             <ul>
-              ${module.hours.map(hour => `<li>${hour.label}: ${hour.hours} hours</li>`).join("")}
+              ${module.hours.map(hour => `<li>${hour.teamRole}: ${hour.hours} hours</li>`).join("")}
             </ul>
           </div>
         `).join("")}
 
-        <h2>Timeline</h2>
-        <p>${proposal.timeline.replace(/\n/g, "<br>")}</p>
       </body>
       </html>
     `;
@@ -128,7 +126,7 @@ const ExportButtons: React.FC = () => {
       <Button type="default" onClick={() => setIsPreviewOpen(true)} style={{ marginRight: 10 }}>
         Preview
       </Button>
-      
+
       <Modal
         title="Proposal Preview"
         open={isPreviewOpen}
