@@ -165,74 +165,71 @@ const ExportButtons: React.FC = () => {
       });
     });
     return `
-      <html>
-      <head>
         <style>
           body { font-family: Arial, sans-serif;}
-          h1 { color: #2c3e50; text-align: center; }
-          h2 { color: #34495e; border-bottom: 2px solid #ddd; padding-bottom: 5px; }
-          p, li { font-size: 16px; line-height: 1.6; color: #333; }
-          ul { padding-left: 20px; }
-          .module, .team-member { background: #fff; padding: 10px; margin: 10px 0; border-radius: 5px; box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); }
-          .module h3, .team-member h3 { margin-bottom: 5px; color: #2c3e50; }
-          .module p, .team-member p { margin: 5px 0; }
-          .hours { font-weight: bold; color: #e67e22; }
-          table { width: 100%; border-collapse: collapse; margin-top: 10px; }
-          th, td { border: 1px solid #ddd; padding: 8px; text-align: left; }
-          th { background-color: #f2f2f2; text-align: center; }
-          .timeline-table { margin-top: 20px; }
-          .timeline-table th, .timeline-table td { text-align: center; font-size: 14px; }
-          .highlight { background-color: #eafaf1; color: #2c3e50; font-weight: bold; }
+          #proposal-generated h1 { color: #2c3e50; text-align: center; }
+          #proposal-generated { color: #333; }
+          #proposal-generated h2 { color: #34495e; border-bottom: 2px solid #ddd; padding-bottom: 5px; }
+          #proposal-generated p, #proposal-generated li { font-size: 16px; line-height: 1.6; color: #333; }
+          #proposal-generated ul { padding-left: 20px; }
+          #proposal-generated .module, #proposal-generated .team-member { background: #fff; padding: 10px; margin: 10px 0; border-radius: 5px; box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); }
+          #proposal-generated .module h3, #proposal-generated .team-member h3 { margin-bottom: 5px; color: #2c3e50; }
+          #proposal-generated .module p, #proposal-generated .team-member p { margin: 5px 0; }
+          #proposal-generated .hours { font-weight: bold; color: #e67e22; }
+          #proposal-generated table { width: 100%; border-collapse: collapse; margin-top: 10px; }
+          #proposal-generated th, #proposal-generated td { border: 1px solid #ddd; padding: 8px; text-align: left; }
+          #proposal-generated th { background-color: #f2f2f2; text-align: center; }
+          #proposal-generated .timeline-table { margin-top: 20px; }
+          #proposal-generated .timeline-table th, #proposal-generated .timeline-table td { text-align: center; font-size: 14px; }
+          #proposal-generated .highlight { background-color: #eafaf1; color: #2c3e50; font-weight: bold; }
         </style>
-      </head>
-      <body>
-        <h1>${proposal.title}</h1>
-        <p>${proposal.overview}</p>
-  
-        <h2>Deliverables</h2>
-        <ul>
-          ${proposal.deliverables.map(deliverable => `<li>${deliverable}</li>`).join("")}
-        </ul>
-  
-        <h2>Modules</h2>
-        ${proposal.modules.map(module => `
-          <div class="module">
-            <h3>${module.name}</h3>
-            <p>${module.description}</p>
-            <p class="hours">Hours:</p>
-            <ul>
-              ${module.hours.map(hour => `<li>${hour.teamRole}: ${hour.hours} hours</li>`).join("")}
-            </ul>
-          </div>
-        `).join("")}
-  
-        <h2>Team Members</h2>
-        <table>
-          <thead>
-            <tr>
-              <th>Team Role</th>
-              <th>Required Members</th>
-              <th>Days Per Week</th>
-              <th>Hours Per Day</th>
-            </tr>
-          </thead>
-          <tbody>
-            ${proposal.teamMembers.map(member => `
+        <div id="proposal-generated">
+          <h1>${proposal.title}</h1>
+          <p>${proposal.overview}</p>
+    
+          <h2>Deliverables</h2>
+          <ul>
+            ${proposal.deliverables.map(deliverable => `<li>${deliverable}</li>`).join("")}
+          </ul>
+    
+          <h2>Modules</h2>
+          ${proposal.modules.map(module => `
+            <div class="module">
+              <h3>${module.name}</h3>
+              <p>${module.description}</p>
+              <p class="hours">Hours:</p>
+              <ul>
+                ${module.hours.map(hour => `<li>${hour.teamRole}: ${hour.hours} hours</li>`).join("")}
+              </ul>
+            </div>
+          `).join("")}
+    
+          <h2>Team Members</h2>
+          <table>
+            <thead>
               <tr>
-                <td>${member.teamRole}</td>
-                <td>${member.count}</td>
-                <td>${member.daysPerWeek}</td>
-                <td>${member.hoursPerDay}</td>
+                <th>Team Role</th>
+                <th>Required Members</th>
+                <th>Days Per Week</th>
+                <th>Hours Per Day</th>
               </tr>
-            `).join("")}
-          </tbody>
-        </table>
-  
-  
-       ${generateHTMLContentHoursSummary()}
-       ${generateHTMLContentProjectTimeline()}
-      </body>
-      </html>
+            </thead>
+            <tbody>
+              ${proposal.teamMembers.map(member => `
+                <tr>
+                  <td>${member.teamRole}</td>
+                  <td>${member.count}</td>
+                  <td>${member.daysPerWeek}</td>
+                  <td>${member.hoursPerDay}</td>
+                </tr>
+              `).join("")}
+            </tbody>
+          </table>
+    
+    
+        ${generateHTMLContentHoursSummary()}
+        ${generateHTMLContentProjectTimeline()}
+      </div>
     `;
   };
 
