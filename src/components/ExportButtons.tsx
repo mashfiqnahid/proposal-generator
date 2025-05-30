@@ -168,7 +168,7 @@ const ExportButtons: React.FC = () => {
       <html>
       <head>
         <style>
-          body { font-family: Arial, sans-serif; padding: 20px; max-width: 900px; margin: auto; background-color: #f4f4f4; }
+          body { font-family: Arial, sans-serif;}
           h1 { color: #2c3e50; text-align: center; }
           h2 { color: #34495e; border-bottom: 2px solid #ddd; padding-bottom: 5px; }
           p, li { font-size: 16px; line-height: 1.6; color: #333; }

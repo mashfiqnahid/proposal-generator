@@ -57,7 +57,7 @@ const TeamMemberTable: React.FC<TeamMemberTableProps> = ({ teamMembers }) => {
         },
     ];
 
-    return <Table dataSource={teamMembers.map((tm, index) => ({ ...tm, key: index }))} columns={columns} pagination={false} />;
+    return <Table className='custom-dark-table' dataSource={teamMembers.map((tm, index) => ({ ...tm, key: index }))} columns={columns} pagination={false} />;
 };
 
 export default TeamMemberTable;

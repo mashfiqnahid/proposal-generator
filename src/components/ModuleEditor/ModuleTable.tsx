@@ -39,7 +39,7 @@ const ModuleTable: React.FC<ModuleTableProps> = ({ modules, onEdit, onDelete }) 
         },
     ];
 
-    return <Table dataSource={modules.map((mod, index) => ({ ...mod, key: index }))} columns={columns} pagination={false} />;
+    return <Table className='custom-dark-table' dataSource={modules.map((mod, index) => ({ ...mod, key: index }))} columns={columns} pagination={false} />;
 };
 
 export default ModuleTable;
